@@ -1,5 +1,7 @@
 package com.tgco.jpa;
 
+import com.tgco.jpa.models.Student;
+import com.tgco.jpa.repositories.StudentRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,9 +16,17 @@ public class JpaApplication {
 	}
 
 	@Bean
-	public CommandLineRunner commandLineRunner(String[] args) {
+	public CommandLineRunner commandLineRunner(StudentRepository studentRepo) {
 		return runner -> {
-			System.out.println("Hello world");
+			createStudent(studentRepo);
 		};
+	}
+
+	private void createStudent(StudentRepository studentRepo) {
+		System.out.println("creating student");
+		Student student = new Student("Thankgod", "Ossaija", "codebugsolved@gmail.com");
+		studentRepo.save(student);
+
+		System.out.println("Saved student. Generated Id: " + student.getId());
 	}
 }

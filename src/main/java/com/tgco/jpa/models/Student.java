@@ -1,4 +1,4 @@
-package com.tgco.jpa.model;
+package com.tgco.jpa.models;
 
 import jakarta.persistence.*;
 
