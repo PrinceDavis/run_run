@@ -18,8 +18,16 @@ public class JpaApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(StudentRepository studentRepo) {
 		return runner -> {
-			createStudent(studentRepo);
+//			createStudent(studentRepo);
+			readStudent(studentRepo);
 		};
+	}
+
+	private void readStudent(StudentRepository studentRepo) {
+		Student student = new Student("daisy", "Ossaija", "codebugsolved@gmail.com");
+		studentRepo.save(student);
+		Student studentData = studentRepo.findById(student.getId());
+		System.out.println(studentData);
 	}
 
 	private void createStudent(StudentRepository studentRepo) {
